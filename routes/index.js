@@ -2,6 +2,9 @@ const express = require('express')
 const Controller = require('../controllers')
 const router = express.Router()
 
+router.get('/',(req, res)=>{
+  res.redirect('/login')
+})
 
 router.get('/register', Controller.registerGet)
 router.post('/register', Controller.registerPost)
@@ -28,9 +31,10 @@ const isModerator = (req, res, next)=>{
 }
 
 router.use(isLogin)
-
 router.get('/logout', Controller.logout)
-router.get('/',Controller.home)
+
+
+router.get('/home', Controller.home)
 router.post('/post',Controller.post)
 router.get('/:PostId/upvote',Controller.upvote)
 router.get('/:PostId/downvote',Controller.downvote)

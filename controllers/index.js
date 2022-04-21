@@ -54,7 +54,7 @@ class Controller{
             req.session.UserId = user.id
             req.session.UserRole = user.role
 
-            return res.redirect('/')
+            return res.redirect('/home')
           } else {
             const err = 'Invalid email/password'
             return res.redirect(`/login/?errors=${err}`)
@@ -99,7 +99,7 @@ class Controller{
     const newPost = { content, UserId}
     Post.create(newPost)
       .then(result => {
-        res.redirect('/')
+        res.redirect('/home')
       })
       .catch(err => res.send(err))
   }
@@ -113,7 +113,7 @@ class Controller{
       }
     })
       .then(result => {
-        res.redirect('/')
+        res.redirect('/home')
       })
       .catch(err => res.send(err))
   }
@@ -127,7 +127,7 @@ class Controller{
       }
     })
       .then(result => {
-        res.redirect('/')
+        res.redirect('/home')
       })
       .catch(err => res.send(err))
   }
@@ -141,7 +141,7 @@ class Controller{
       }
     })
       .then(result => {
-        res.redirect('/')
+        res.redirect('/home')
       })
       .catch(err => res.send(err))
   }
@@ -170,7 +170,13 @@ class Controller{
     const { UserId, UserRole } = req.session
     const info = {UserId, UserRole }
     const { name } = req.query
-    const options = {where:{[Op.or]: [{firstName:{[Op.iLike]:`%${name}%`}},{lastName:{[Op.iLike]:`%${name}%`}}]}}
+    
+    let options = {where:{id:0}}
+
+    if (name){
+      options = {where:{[Op.or]: [{firstName:{[Op.iLike]:`%${name}%`}},{lastName:{[Op.iLike]:`%${name}%`}}]}}
+    }
+
     Profile.search(options)
     .then(users => {
       res.render('users', {users, info})

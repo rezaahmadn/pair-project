@@ -7,6 +7,7 @@
   <div class="card-body">
     <h5 class="card-title">Fullname: <%= profile.fullName() %></h5>
     <p class="card-text">Age: <%= profile.age %></p>
+    <p class="card-text"><%= profile.User.role %></p>
     <% if (info.UserId == profile.UserId) { %>
     <a href="/profile/<%= profile.UserId %>/edit" class="btn btn-primary">Edit Profile</a>
     <% } %>
