@@ -2,9 +2,9 @@ const express = require('express')
 const Controller = require('../controllers')
 const router = express.Router()
 
-router.get('/',(req, res)=>{
-  res.redirect('/login')
-})
+// router.get('/',(req, res)=>{
+//   res.redirect('/login')
+// })
 
 router.get('/register', Controller.registerGet)
 router.post('/register', Controller.registerPost)
@@ -30,8 +30,17 @@ const isModerator = (req, res, next)=>{
   }
 }
 
+router.get('/',(req, res)=>{
+  if (req.session.UserId){
+    res.redirect('/home')
+  } else {
+    res.redirect(`/login/`)
+  }
+})
+
 router.use(isLogin)
 router.get('/logout', Controller.logout)
+
 
 
 router.get('/home', Controller.home)
