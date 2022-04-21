@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const PORT = procces.env.PORT || 3000
+const PORT = process.env.PORT || 3000
 const router = require('./routes/index')
 const session = require('express-session')
 
