@@ -1,0 +1,12 @@
+[
+  {
+    "email":"myemail1@gmail.com",
+    "password":"mypassword1",
+    "role":"Moderator"
+  },
+  {
+    "email":"myemail2@gmail.com",
+    "password":"mypassword2",
+    "role":"User"
+  }
+]

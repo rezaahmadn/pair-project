@@ -1,0 +1,18 @@
+<%- include('header/header') %> 
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Search result: </th>
+      </tr>
+    </thead>
+    <tbody>
+    <% users.forEach(el => { %>
+        <tr>
+          <td><h5><a style="text-decoration: none; color: black;" href="/profile/<%= el.UserId %>"><%= el.fullName() %></a></h5></td>
+        </tr>
+        <% }) %>
+      </tbody>
+  </table>
+</body>
+</html>

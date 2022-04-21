@@ -1,0 +1,44 @@
+<%- include('header/header') %> 
+
+<div class="mb-5 mx-5 mt-4">
+  <form action="/post" method="post">
+  <label for="exampleFormControlTextarea1" class="form-label">What's happening?</label>
+  <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  <button type="submit" class="btn btn-success">Post</button>
+  </form>
+</div>
+  
+
+<div class="card mt-5 mx-5">
+  <div class="card-header">
+    Timeline
+  </div>
+  <!-- Start loop -->
+  <% posts.forEach(el => { %>
+    <div class="card-body">
+      <h5 class="card-title"><a href="/profile/<%= el.User.id %>" style="text-decoration: none; color: black;"><%= el.User.Profile.firstName %></a></h5>
+      <p class="card-text">"<%= el.content %> "</p>
+      <p class="card-text blockquote-footer"><%= formatDate(el.createdAt) %></p>
+      
+      <% if (el.votes < 0) { %>
+        💔
+      <% } else { %>
+        ❤️
+      <% } %>
+      <%= el.votes %>  
+      <a href="/<%= el.id %>/upvote" class="btn btn-info" style="color: white;">Upvote</a>
+      <a href="/<%= el.id %>/downvote" class="btn btn-info" style="color: white;">Downvote</a>
+      <% if (info.UserRole === 'Moderator') { %>
+        <a href="/<%= el.id %>/delete" class="btn btn-danger">Delete</a>
+      <% } %>
+      <hr>
+    </div>
+  <% }) %>
+  <!-- End loop -->
+</div>
+
+
+
+
+</body>
+</html>

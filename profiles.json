@@ -1,0 +1,14 @@
+[
+  {
+    "firstName":"myfirstname",
+    "lastName":"mylastname",
+    "age":19,
+    "UserId":1
+  },
+  {
+    "firstName":"myfirstname2",
+    "lastName":"mylastname2",
+    "age":20,
+    "UserId":2
+  }
+]

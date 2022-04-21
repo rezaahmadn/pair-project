@@ -1,0 +1,31 @@
+<%- include('header/header') %> 
+
+<div class="card">
+  <div class="card-header">
+    <h3>Hi, <%= profile.firstName %>!</h3>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Fullname: <%= profile.fullName() %></h5>
+    <p class="card-text">Age: <%= profile.age %></p>
+    <% if (info.UserId == profile.UserId) { %>
+    <a href="/profile/<%= profile.UserId %>/edit" class="btn btn-primary">Edit Profile</a>
+    <% } %>
+  </div>
+</div>
+
+<% profile.User.Posts.forEach(el => { %>
+  <div class="card-body">
+    <p class="card-text">"<%= el.content %> "</p>
+    <p class="card-text blockquote-footer"><%= formatDate(el.createdAt) %></p>
+    
+    <% if (el.votes < 0) { %>
+      💔
+    <% } else { %>
+      ❤️
+    <% } %>
+    <%= el.votes %>  
+    <hr>
+  </div>
+<% }) %>
+</body>
+</html>
